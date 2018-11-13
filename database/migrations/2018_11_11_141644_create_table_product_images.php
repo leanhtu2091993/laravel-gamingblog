@@ -31,6 +31,6 @@ class CreateTableProductImages extends Migration
      */
     public function down()
     {
-        //
+		Schema::dropIfExists('users');
     }
 }

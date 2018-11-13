@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableTags extends Migration
+class CreateTableEmailSentList extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTableTags extends Migration
      */
     public function up()
     {
-		Schema::create('tags', function(Blueprint $table) {
+		Schema::create('email_sent_list', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('product_id');
-			$table->string('name', 50);
+			$table->integer('email_id');
+			$table->integer('user_id');
 			$table->tinyInteger('deleted');
 			$table->string('created_by', 20);
 			$table->string('updated_by', 20);
@@ -31,6 +31,6 @@ class CreateTableTags extends Migration
      */
     public function down()
     {
-		Schema::dropIfExists('users');
+		Schema::dropIfExists('email_sent_list');
     }
 }

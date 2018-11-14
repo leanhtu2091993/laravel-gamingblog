@@ -9,7 +9,7 @@
     <meta name="description" content="Mplify Bootstrap 4.1.1 Admin Template">
     <meta name="author" content="ThemeMakker, design by: ThemeMakker.com">
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/st-admin/assets/images/favicon.ico" type="image/x-icon">
     <!-- VENDOR CSS -->
     <link rel="stylesheet" href="{{asset('st-admin/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('st-admin/assets/vendor/animate-css/animate.min.css')}}">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('st-admin/assets/vendor/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}">
     <link rel="stylesheet" href="{{asset('st-admin/assets/vendor/chartist/css/chartist.min.css')}}">
     <link rel="stylesheet" href="{{asset('st-admin/assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css')}}">
+    <link rel="stylesheet" href="{{asset('st-admin/assets/vendor/dropify/css/dropify.min.css')}}">
 
 
     <!-- MAIN CSS -->

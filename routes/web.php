@@ -15,4 +15,7 @@ Route::get('/', 'Store\HomeController@index');
 
 Route::prefix('admin')->group(function () {
 	Route::get('/', 'Admin\HomeController@index');
+	Route::get('/product', 'Admin\ProductController@index')->name('admin.list_product');
+	Route::get('/product/add', 'Admin\ProductController@add')->name('admin.add_product');
+	Route::get('/category', 'Admin\CategoryController@index')->name('admin.list_category');
 });

@@ -3,11 +3,11 @@
         <nav id="leftsidebar-nav" class="sidebar-nav">
             <ul id="main-menu" class="metismenu">
                 <li class="heading">Main</li>
-                <li class="active"><a href="index.html"><i class="icon-home"></i><span>Dashboard</span></a></li>
-                <li class="heading">App</li>
-                <li><a href="app-inbox.html"><i class="icon-envelope"></i><span>Inbox</span></a></li>
-                <li><a href="app-chat.html"><i class="icon-bubbles"></i><span>Chat</span></a></li>
-                <li><a href="app-calendar.html"><i class="icon-calendar"></i><span>Calendar</span></a></li>
+                <li class="active"><a href="/"><i class="icon-home"></i><span>Dashboard</span></a></li>
+                <li class="heading">Products</li>
+                <li><a href="{{route('admin.list_product')}}"><i class="icon-envelope"></i><span>List Product</span></a></li>
+                <li><a href="{{route('admin.add_product')}}"><i class="icon-bubbles"></i><span>Add Product</span></a></li>
+                <li><a href="{{route('admin.list_category')}}"><i class="icon-calendar"></i><span>Category</span></a></li>
                 <li><a href="app-taskboard.html"><i class="icon-notebook"></i><span>Taskboard</span></a></li>
                 <li class="heading">UI Elements</li>
                 <li class="middle">

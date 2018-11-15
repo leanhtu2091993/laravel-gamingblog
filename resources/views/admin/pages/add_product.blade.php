@@ -37,7 +37,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Danh mục</label>
-                                    <select name="" id="" class="form-control"></select>
+                                    <select name="category" id="category" class="form-control">
+                                        <option value=""></option>
+                                        @foreach($cats as $cat)
+                                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Số lượng</label>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Model\Category;
 
 class ProductController extends Controller
 {
@@ -14,6 +15,10 @@ class ProductController extends Controller
 
 	public function add()
 	{
-		return view('admin.pages.add_product');
+		$cats = Category::all();
+
+		return view('admin.pages.add_product', [
+			'cats' => $cats
+		]);
 	}
 }

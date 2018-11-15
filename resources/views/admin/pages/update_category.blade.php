@@ -51,16 +51,17 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Thêm chuyên mục</h2>
+                            <h2>Cập nhật chuyên mục</h2>
                         </div>
                         <div class="body">
-                            <form id="basic-form" method="post" novalidate="" action="{{route('admin.add_category')}}">
+                            <form id="basic-form" method="post" novalidate="" action="{{route('admin.update_category_post')}}">
                                 @csrf
                                 <div class="form-group">
                                     <label>Tên chuyên mục</label>
-                                    <input type="text" class="form-control" required="" name="cat-name">
+                                    <input type="text" class="form-control" required="" name="cat-name" value="{{$updateCat->name}}">
+                                    <input type="hidden" class="form-control" required="" name="cat-id" value="{{$updateCat->id}}">
                                 </div>
-                                <button type="submit" class="btn btn-warning"><i class="fa fa-plus-square"></i><span>   Thêm chuyên mục</span></button>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-plus-square"></i><span>   Cập nhật</span></button>
                             </form>
                         </div>
                     </div>

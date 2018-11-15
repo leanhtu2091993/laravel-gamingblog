@@ -18,4 +18,8 @@ Route::prefix('admin')->group(function () {
 	Route::get('/product', 'Admin\ProductController@index')->name('admin.list_product');
 	Route::get('/product/add', 'Admin\ProductController@add')->name('admin.add_product');
 	Route::get('/category', 'Admin\CategoryController@index')->name('admin.list_category');
+	Route::post('/category/add', 'Admin\CategoryController@add')->name('admin.add_category');
+	Route::post('/category/update', 'Admin\CategoryController@update')->name('admin.update_category_post');
+	Route::get('/category/update/{id}', 'Admin\CategoryController@update')->name('admin.update_category_get');
+	Route::get('/category/delete/{id}', 'Admin\CategoryController@delete')->name('admin.delete_category');
 });

@@ -25,12 +25,7 @@
                 <li>
                     <div id="navbar-menu">
                         <ul class="nav navbar-nav">
-                            <li>
-                                <a href="javascript:void(0);" class="mega_menu icon-menu" title="Mega Menu">Mega</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="create_new icon-menu" title="Create New">Create New</a>
-                            </li>
+
                             <li class="dropdown">
                                 <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                                     <i class="icon-bell"></i>
@@ -173,7 +168,7 @@
                                             <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
                                             <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="page-login.html"><i class="icon-power"></i>Logout</a></li>
+                                            <li><a href="#"><i class="icon-power"></i>Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>

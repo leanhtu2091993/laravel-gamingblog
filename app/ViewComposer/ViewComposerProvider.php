@@ -16,6 +16,7 @@ class ViewComposerProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', 'App\ViewComposer\MainMenuComposer');
+        View::composer('*', 'App\ViewComposer\CartComposer');
     }
 
     /**

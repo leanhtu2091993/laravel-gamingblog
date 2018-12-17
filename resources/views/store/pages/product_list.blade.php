@@ -9,15 +9,15 @@
                         <div id="primary" class="eight columns">
 
                             <article class="post">
-
+                                @foreach($products as $product)
                                 <div class="entry-header cf">
-                                    @foreach($products as $product)
+
                                     <h1>
-                                        {{$product->name}}
+                                        <a href="{{route('store.detail_product', ['id' => $product->id])}}">{{$product->name}}</a>
                                     </h1>
 
                                     <p class="post-meta">
-                                        <time class="date" datetime="2014-01-14T11:24">Jan 14, 2014</time>/
+                                        <time class="date" datetime="2019-01-14T11:24">Dec 12, 2019</time>/
                                         <span class="categories">
                                          <a href="#">Design</a> /
                                          <a href="#">User Inferface</a> /
@@ -26,7 +26,7 @@
                                 </div>
 
                                 <div class="post-thumb">
-                                    <a href="single.html" title="">
+                                    <a href="#" title="">
                                         <img src="/upload/product/{{$product->image}}" alt="post-image" title="post-image">
                                     </a>
                                 </div>
@@ -58,5 +58,7 @@
                             </nav>
 
                         </div> <!-- Primary End-->
+
+            @include ('store.layouts.sidebar')
 @endsection
 

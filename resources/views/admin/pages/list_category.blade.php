@@ -5,7 +5,7 @@
             <div class="block-header">
                 <div class="row">
                     <div class="col-lg-5 col-md-8 col-sm-12">
-                        <h2>Quản lý chuyên mục</h2>
+                        <h2>Quản lý danh mục</h2>
                     </div>
                     <div class="col-lg-7 col-md-4 col-sm-12 text-right">
                         <ul class="breadcrumb justify-content-end">
@@ -19,15 +19,15 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Danh sách chuyên mục</h2>
+                            <h2>Danh sách danh mục</h2>
                         </div>
                         <div class="body table-responsive">
                             <table class="table table-hover m-b-0">
                                 <tbody>
                                 <thead>
                                     <td>No.</td>
-                                    <td>Tên chuyên mục</td>
-                                <td>Hành động</td>
+                                    <td>Tên Danh mục</td>
+                                    <td>Hành động</td>
                                 </thead>
                                 @foreach($cats as $cat)
                                 <tr>
@@ -51,16 +51,16 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
                         <div class="header">
-                            <h2>Thêm chuyên mục</h2>
+                            <h2>Thêm danh mục</h2>
                         </div>
                         <div class="body">
                             <form id="basic-form" method="post" novalidate="" action="{{route('admin.add_category')}}">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Tên chuyên mục</label>
+                                    <label>Tên danh mục</label>
                                     <input type="text" class="form-control" required="" name="cat-name">
                                 </div>
-                                <button type="submit" class="btn btn-warning"><i class="fa fa-plus-square"></i><span>   Thêm chuyên mục</span></button>
+                                <button type="submit" class="btn btn-warning"><i class="fa fa-plus-square"></i><span>Thêm danh mục</span></button>
                             </form>
                         </div>
                     </div>

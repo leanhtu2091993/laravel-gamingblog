@@ -7,103 +7,113 @@ use App\Model\Product;
 
 class CartService
 {
-	protected $product;
+    protected $product;
 
-	/**
-	 * CartService constructor.
-	 * @param Product $product
-	 */
-	public function __construct(Product $product)
-	{
-		$this->product = $product;
-	}
+    /**
+     * CartService constructor.
+     * @param Product $product
+     */
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
 
-	/**
-	 * Add product to Cart
-	 *
-	 * @param int $id
-	 */
-	public function addProductToCart($id)
-	{
-		$product = $this->product->find($id);
+    /**
+     * Get cart list
+     *
+     * @return mixed
+     */
+    public function getCart()
+    {
+        return session()->get('cart');
+    }
 
-		if (!$product) {
+    /**
+     * Add product to Cart
+     *
+     * @param int $id
+     */
+    public function addProductToCart($id)
+    {
+        $product = $this->product->find($id);
 
-			abort(404);
-		}
+        if (!$product) {
 
-		$cart = session()->get('cart');
+            abort(404);
+        }
 
-		// If cart is empty then this the first product
-		if (!$cart) {
-			$cart = [
-				$id => [
-					"name" => $product->name,
-					"quantity" => 1,
-					"price" => $product->price,
-					"photo" => $product->photo
-				]
-			];
-		}
+        $cart = session()->get('cart');
 
-		// If cart not empty then check if this product exist then increment quantity
-		if (isset($cart[$id])) {
-			$cart[$id]['quantity']++;
-		} else {
-			// If item not exist in cart then add to cart with quantity = 1
-			$cart[$id] = [
-				"name" => $product->name,
-				"quantity" => 1,
-				"price" => $product->price,
-				"photo" => $product->photo
-			];
-		}
+        // If cart is empty then this the first product
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    "name" => $product->name,
+                    "quantity" => 1,
+                    "price" => $product->price,
+                    "photo" => $product->image
+                ]
+            ];
+        }
 
-		session()->put('cart', $cart);
-	}
+        // If cart not empty then check if this product exist then increment quantity
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            // If item not exist in cart then add to cart with quantity = 1
+            $cart[$id] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "photo" => $product->image
+            ];
+        }
 
-	/**
-	 * Add product to Cart
-	 *
-	 * @param int $id
-	 * @param int $quantity
-	 * @return bool
-	 */
-	public function updateProductToCart($id, $quantity)
-	{
-		if ($id && $quantity)
-		{
-			$cart = session()->get('cart');
-			$cart[$id]["quantity"] = $quantity;
-			session()->put('cart', $cart);
+        session()->put('cart', $cart);
+    }
 
-			return true;
-		}
+    /**
+     * Add product to Cart
+     *
+     * @param int $id
+     * @param int $quantity
+     * @return bool
+     */
+    public function updateProductToCart($id, $quantity)
+    {
+        if ($id && $quantity)
+        {
+            $cart = session()->get('cart');
+            $cart[$id]["quantity"] = $quantity;
+            session()->put('cart', $cart);
 
-		return false;
-	}
+            return true;
+        }
 
-	/**
-	 * Remove product from Cart
-	 *
-	 * @param int $id
-	 * @return bool
-	 */
-	public function removeProductFromCart($id)
-	{
-		if ($id) {
-			$cart = session()->get('cart');
+        return false;
+    }
 
-			if (isset($cart[$id])) {
+    /**
+     * Remove product from Cart
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function removeProductFromCart($id)
+    {
+        if ($id) {
+            $cart = session()->get('cart');
 
-				unset($cart[$id]);
+            if (isset($cart[$id])) {
 
-				session()->put('cart', $cart);
+                unset($cart[$id]);
 
-				return true;
-			}
-		}
+                session()->put('cart', $cart);
 
-		return false;
-	}
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

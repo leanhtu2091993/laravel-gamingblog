@@ -1,62 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+        <!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+        <!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+        <head>
 
-    <title>Bella Shop</title>
+            <!--- Basic Page Needs
+            ================================================== -->
+            <meta charset="utf-8">
+            <title>Gaming | Blog</title>
+            <meta name="description" content="">
+            <meta name="author" content="">
 
-    <!-- Favicon -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('st-store/assets/ico/apple-touch-icon-144-precomposed.png')}}">
-    <link rel="shortcut icon" href="{{asset('st-store/assets/ico/favicon.ico')}}">
+            <!-- Mobile Specific Metas
+            ================================================== -->
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- CSS Global -->
-    <link href="{{asset('st-store/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('st-store/assets/plugins/bootstrap-select/css/bootstrap-select.min.css')}}" rel="stylesheet">
-    <link href="{{asset('st-store/assets/plugins/fontawesome/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('st-store/assets/plugins/prettyphoto/css/prettyPhoto.css')}}" rel="stylesheet">
-    <link href="{{asset('st-store/assets/plugins/owl-carousel2/assets/owl.carousel.min.css')}}" rel="stylesheet">
-    <link href="{{asset('st-store/assets/plugins/owl-carousel2/assets/owl.theme.default.min.css')}}" rel="stylesheet">
-    <link href="{{asset('st-store/assets/plugins/animate/animate.min.css')}}" rel="stylesheet">
+            <!-- CSS
+            ================================================== -->
+            <link rel="stylesheet" href="/css/default.css">
+            <link rel="stylesheet" href="/css/layout.css">
+            <link rel="stylesheet" href="/css/media-queries.css">
 
-    <!-- Theme CSS -->
-    <link href="{{asset('st-store/assets/css/theme.css')}}" rel="stylesheet">
-    <link href="{{asset('st-store/assets/css/theme-green-1.css')}}" rel="stylesheet">
+            <!-- Script
+            ================================================== -->
+            <script src="/js/modernizr.js"></script>
 
-    <!-- Head Libs -->
-    <script src="{{asset('st-store/assets/plugins/modernizr.custom.js')}}"></script>
+            <!-- Favicons
+             ================================================== -->
+            <link rel="shortcut icon" href="favicon.ico" >
 
-    <!--[if lt IE 9]>
-    <script src="{{asset('st-store/assets/plugins/iesupport/html5shiv.js')}}"></script>
-    <script src="{{asset('st-store/assets/plugins/iesupport/respond.min.js')}}"></script>
-    <![endif]-->
-</head>
-<body id="home" class="wide">
-<!-- WRAPPER -->
-<div class="wrapper">
-    @include('store.partials.popup-cart')
-    @include('store.partials.topbar')
+        </head>
 
-    <!-- HEADER -->
-    <header class="header fixed">
-        <div class="header-wrapper">
-            <div class="container">
+        <body>
 
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="index.html"><img src="/st-store/assets/img/logo-bella-shop.png" alt="Bella Shop"/></a>
+        <!-- Header
+        ================================================== -->
+        <header>
+
+            <div class="row">
+
+                <div class="twelve columns">
+
+                    <div class="logo">
+                        <a href="#"><img alt="" src="#"></a>
+                    </div>
+
+                    <nav id="nav-wrap">
+
+                        <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+                        <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+
+                        <ul id="nav" class="nav">
+                            <li class="active"><a href="{{route('store.home')}}">Home</a></li>
+                            @foreach($categories as $cat)
+                                <li><a href="{{route('store.category', ['id' => $cat->id])}}">{{$cat->name}}</a></li>
+                            @endforeach
+                        </ul> <!-- end #nav -->
+
+                    </nav> <!-- end #nav-wrap -->
+
                 </div>
-                <!-- /Logo -->
-                <!-- Header search -->
-                <div class="header-search">
-                    <input class="form-control" type="text" placeholder="What are you looking?"/>
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-                <!-- /Header search -->
-                @include('store.partials.header-cart')
+
             </div>
-        </div>
-        @include('store.partials.navigation')
-    </header>
-    <!-- /HEADER -->
+
+        </header> <!-- Header End -->
+
+        <!-- Page Title
+        ================================================== -->
+        <div id="page-title">
+
+            <div class="row">
+
+                <div class="ten columns centered text-center">
+                    <h1>Gaming Blog<span>.</span></h1>
+
+                    <p>Gaming Past, Present & Future</p>
+                </div>
+
+            </div>
+
+        </div> <!-- Page Title End-->
+

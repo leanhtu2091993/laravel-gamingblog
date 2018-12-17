@@ -40,4 +40,10 @@ return [
         ],
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),         // Your Facebook Client ID
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'), // Your Facebook Client Secret
+        'redirect' => 'http://127.0.0.1:8000',
+    ],
+
 ];

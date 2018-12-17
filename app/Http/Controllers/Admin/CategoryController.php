@@ -9,24 +9,15 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-	/**
-	 * List category and add page
-	 *
-	 * @return \Illuminate\View\View
-	 */
+
 	public function index()
 	{
-		$cats = Category::all();
+        $cats = Category::where('deleted', 0)->get();
 
 		return view('admin.pages.list_category', ['cats' => $cats]);
 	}
 
-	/**
-	 * Add new category
-	 *
-	 * @param Request $request
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
+
 	public function add(Request $request)
 	{
 		$name = $request->input('cat-name');
@@ -35,7 +26,7 @@ class CategoryController extends Controller
 		if ($name) {
 			$cat->name = $name;
 			$cat->deleted = 0;
-			$cat->created_by = 'System';
+			$cat->created_by = 'System'; // system as string
 			$cat->updated_by = 'System';
 			$cat->save();
 		}
@@ -43,44 +34,38 @@ class CategoryController extends Controller
 		return redirect()->route('admin.list_category');
 	}
 
-	/**
-	 * @param Request $request
-	 * @param $id
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function update(Request $request, $id = null)
-	{
-		if ($request->method() == 'POST') {
-			$catId = $request->input('cat-id');
-			$cat = Category::find($catId);
+    public function update(Request $request, $id = null)
+    {
+        if ($request->method() == 'POST') {
+            $catId = $request->input('cat-id');
+            $cat = Category::find($catId);
 
-			if ($cat) {
-				$cat->name = $request->input('cat-name');
-				$cat->save();
-			}
+            if ($cat) {
+                $cat->name = $request->input('cat-name');
+                $cat->save();
+            }
 
-			return redirect()->route('admin.list_category');
-		}
+            return redirect()->route('admin.list_category');
+        }
 
-		$cats = Category::all();
-		$updateCat = Category::find($id);
+        $cats = Category::all();
+        $updateCat = Category::find($id);
 
-		return view('admin.pages.update_category', [
-			'cats' => $cats,
-			'updateCat' => $updateCat
-		]);
-	}
+        return view('admin.pages.update_category', [
+            'cats' => $cats,
+            'updateCat' => $updateCat
+        ]);
+    }
 
-	/**
-	 * Delete category by ID
-	 *
-	 * @param $id
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function delete($id)
-	{
-		Category::destroy($id);
 
-		return redirect()->route('admin.list_category');
-	}
+    public function delete($idcat)
+    {
+        $cat = Category::find($idcat);
+        $cat->deleted = 1;
+        $cat->save();
+
+        return redirect()->route('admin.list_category');
+    }
+
+
 }

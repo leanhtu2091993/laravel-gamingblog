@@ -4,75 +4,67 @@ namespace App\Http\Controllers\Store;
 
 
 use App\Http\Controllers\Controller;
-use App\Services\CartService;
+use App\Model\Product;
 use Illuminate\Http\Request;
 
-/**
- * Class CartController
- * @package App\Http\Controllers\Store
- *
- * @author bienhoang <bienhoanggiang@gmail.com>
- */
 class CartController extends Controller
 {
-	protected $cartService;
-
-	public function __construct(CartService $cartService)
+	public function index()
 	{
-		$this->cartService = $cartService;
+		return view('store.pages.shopping-cart');
 	}
 
-	/**
-	 * Show Cart page
-	 *
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function index()
+	public function add($productId)
+	{
+		$product = Product::find($productId);
+
+		$cart = session()->get('cart');
+
+		if (isset($cart[$productId])) {
+			$cart[$productId]['quantity']++;
+		} else {
+			$cart[$productId] = [
+				'id' => $product->id,
+				'name' => $product->name,
+				'price' => $product->price,
+				'photo' => $product->image,
+				'quantity' => 1
+			];
+		}
+
+		session()->put('cart', $cart);
+
+		return redirect()->back();
+
+	}
+
+	public function update(Request $request, $productId = null, $quantity = null)
 	{
 		$cart = session()->get('cart');
 
-		return view('store.pages.cart', ['cart' => $cart]);
-	}
+		if ($request->method() == 'POST') {
+			$products = $request->input();
 
-	/**
-	 * Add product to Cart
-	 *
-	 * @param $id
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function addToCart($id)
-	{
-		$this->cartService->addProductToCart($id);
+			foreach ($products as $id => $quantity) {
+				if (is_numeric($id)){
+					$cart[$id]['quantity'] = $quantity;
+				}
+			}
 
-		return redirect()->back()->with('success', 'Product added to cart successfully!');
-	}
+			session()->put('cart', $cart);
 
-	/**
-	 * Update product in Cart
-	 *
-	 * @param Request $request
-	 */
-	public function update(Request $request)
-	{
-		$id = $request->input('id');
-		$quantity = $request->input('quantity');
-
-		if ($this->cartService->updateProductToCart($id, $quantity)) {
-			session()->flash('success', 'Cart updated successfully');
+			return redirect()->back();
 		}
 	}
 
-	/**
-	 * Remove product from Cart
-	 *
-	 * @param Request $request
-	 */
-	public function remove(Request $request)
+	public function delete($productId)
 	{
-		$id = $request->input('id');
+		$cart = session()->get('cart');
 
-		if ($this->cartService->removeProductFromCart($id)) {
-			session()->flash('success', 'Product removed successfully');
-		}
+		unset($cart[$productId]);
+
+		session()->put('cart', $cart);
+
+		return redirect()->back();
 	}
 }
